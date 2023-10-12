@@ -347,3 +347,7 @@ In order to get a UEFI VM working (instead of SeaBios), there is 1 extra step th
     sockets: 1
     ```
 9. Start the VM again and login via Remote Desktop. Opening "Device Manager" should show the GPU working properly. If you still see error 43, try rebooting the host :)
+
+# Known issues
+- ### When entering via Remote Desktop, the GPU is disabled
+  I'm unsure why this happens, but it seems like right-click + Enable Device makes it work again
