@@ -2,7 +2,7 @@
 
 This is a guide to get the Ryzen 7 7735hs with integrated graphics running with proxmox inside a Windows 10 VM. The process for Windows 11 is similar but you need a patched ISO to remove the TMP, Secure boot and few other requirements.
 
-## Installing Proxmox VE
+# Installing Proxmox VE
 1. Download [Proxmox](https://www.proxmox.com/en/downloads/proxmox-virtual-environment/iso) and create a installation usb (with [rufus](https://rufus.ie/en/) for example)
 1. Boot your PC from the USB and run the proxmox installation (in my case it's a Minis Forum UM773)
 2. If installing Proxmox 7.4, you need to fix the graphical installer when it crashes (known issue in proxmox 7.4)
@@ -29,7 +29,7 @@ This is a guide to get the Ryzen 7 7735hs with integrated graphics running with 
     apt update
     ```
     
-## Configuring the GPU for passthrough
+# Configuring the GPU for passthrough
 
 The process of doing a GPU passthrough isn't complicated, it's about making sure the host doesn't load the GPU drivers and that the GPU PCI connection can be sent to the VM completely.
 
@@ -68,9 +68,6 @@ The process of doing a GPU passthrough isn't complicated, it's about making sure
 
 1. Avoid loading the GPU drivers in the host. These are the default AMD + Sound drivers, but you can find the ones your system is using by running `lspci -nnk` and checking the "Kernel driver in Use" section.
     ```
-    echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-    echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-    echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
     echo "blacklist radeon" >> /etc/modprobe.d/pve-blacklist.conf
     echo "blacklist amdgpu" >> /etc/modprobe.d/pve-blacklist.conf
     echo "blacklist snd_hda_intel" >> /etc/modprobe.d/pve-blacklist.conf
@@ -141,7 +138,7 @@ There is a known bug with AMD graphics cards where the host crashes after it tri
 1. Run the machine and install Windows (type of installation: custom)
 2. After finishing the Windows installation, stop the VM
 
-## Configuring the GPU in the Windows VM
+# Configuring the GPU in the Windows VM
 
 In order to pass the GPU device properly, we need to tell the VM which GPU BIOS to use. Luckily for us, we can extract this from the host (proxmox) machine via SSH:
 
@@ -306,7 +303,7 @@ In order to pass the GPU device properly, we need to tell the VM which GPU BIOS 
 7. Also install [the official AMD GPU drivers](https://www.amd.com/en/support/apu/amd-ryzen-processors/amd-ryzen-7-processors-radeon-graphics/amd-ryzen-7-7735hs). **Use the OFFLINE installer**, the online installer will complain that the computer is not an official AMD computer (its probably missing passthrough of some other devices in the IOMMU group, help appreciated).
 7. Install https://github.com/inga-lovinde/RadeonResetBugFix service to make sure the GPU can be transferred properly to the host
    
-## Using the GPU as the Primary GPU
+# Using the GPU as the Primary GPU
 
 Now that we have all the drivers ready, we can enable the GPU as the Primary GPU:
    
@@ -350,13 +347,3 @@ In order to get a UEFI VM working (instead of SeaBios), there is 1 extra step th
     sockets: 1
     ```
 9. Start the VM again and login via Remote Desktop. Opening "Device Manager" should show the GPU working properly. If you still see error 43, try rebooting the host :)
-   
----
-   
-## NOTES and ISSUES
-
- - ### The reset issue does not crash the host in Proxmox 8:
-    In Proxmox v7.4, when stopping a VM with the GPU it crashed the host. In Proxmox v8, this issue seems to not exist as the host doesn't crash anymore after stopping the VM with the GPU. If you try to start the VM again it won't boot but it won't crash the host.
-
-    The trick is to just configure `vfio.config`, do not blacklist the drivers in `pve-blacklist.conf`. I kept the blacklisting in the guide because its a requirement for v7.4 but it seems like it can be safely ignored in v8.
-
