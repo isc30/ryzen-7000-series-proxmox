@@ -274,7 +274,8 @@ In order to pass the GPU device properly, we need to tell the VM which GPU BIOS 
 5. Do the same for the Audio device, in my case its `0000:34:00.1`
 6. Set the correct BIOS for the GPU:
     - Edit `/etc/pve/qemu-server/<VM_ID>.conf`
-    - Modify the `hostpci` line for the GPU and append `,romfile=vbios_1002_1681.bin`
+    - Modify the `args` and `cpu` lines
+    - Modify the `hostpci` line for the GPU
     ```diff
     +args: -cpu 'host,-hypervisor,kvm=off'
     agent: 1
