@@ -1,0 +1,5 @@
+open UBU.bat
+select the bios BIN file
+
+select option 2, choice s
+see /Extracted folder
