@@ -142,7 +142,7 @@ There is a known bug with AMD graphics cards where the host crashes after it tri
 
 # Configuring the GPU in the Windows VM
 
-In order to pass the GPU device properly, we need to tell the VM which GPU BIOS to use. Luckily for us, we can extract this from the host (proxmox) machine via SSH or download it directly from the repo `vbios_1002_1681.bin`:
+In order to pass the GPU device properly, we need to tell the VM which GPU BIOS to use. Luckily for us, we can extract this from the host (proxmox) machine via SSH or download it directly from the repo:
 1. (QUICKEST) Download the `vbios_1002_1681.bin` file from the repo and continue to the step 4 OR...
 1. (ALTERNATIVE METHOD) Create a `vbios.c` file in the host (proxmox) with the following contents:
     <details><summary>Expand `vbios.c`</summary>
