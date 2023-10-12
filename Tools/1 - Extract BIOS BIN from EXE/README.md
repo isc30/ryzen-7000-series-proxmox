@@ -1,0 +1,1 @@
+For the UM773 Lite, MinisForum doesn't provide the BIOS in a BIN format. This tool helps Extract the BIN from the EXE. See `howto.jpg`

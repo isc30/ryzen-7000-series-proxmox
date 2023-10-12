@@ -1,1 +1,0 @@
-.\EfiRom.exe -f 0x1002 -i 0xffff -e "C:\Path\to\AMDGopDriver.efi"

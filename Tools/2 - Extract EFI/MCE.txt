@@ -1,0 +1,36 @@
+MCE v1.50.0 +
+If use prevision version MCE.py need updatrd PLTable
+"pip install --upgrade pltable"
+
+UBU 1.79.5 and later
+
+Removed: MCE.exe
+Added: MCE.py 1.44.0 and later
+Reason: https://github.com/platomav/MCExtractor#c4-anti-virus-false-positives
+
+To work correctly, you need Python version 3.7 or later.
+
+!!! Importan t!!! 
+Uninstall all old versions of Paton 2.x-3.6
+
+Install Python 3.7 or later.
+1) Set "PATH"
+2) Set "py Launcher"
+3) Set "Associate"
+
+After installation, be sure to follow these steps:
+1) Win+R
+2) cmd.exe
+3) pip install colorama PLTable
+
+==================
+If you do not want to install and use Python,
+and want to use MCE.exe,
+then you must download the MCE.exe file yourself.
+You can download it here:
+>> https://github.com/platomav/MCExtractor/releases
+
+Always use the latest version.
+
+
+
