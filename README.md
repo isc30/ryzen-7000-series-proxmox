@@ -348,6 +348,12 @@ In order to get a UEFI VM working (instead of SeaBios), there is 1 extra step th
     ```
 9. Start the VM again and login via Remote Desktop. Opening "Device Manager" should show the GPU working properly. If you still see error 43, try rebooting the host :)
 
+# Results
+
+![image](https://github.com/isc30/UM773-Lite-Proxmox/assets/10807051/69fea650-ab08-427a-98f3-caccc1bacd1b)
+![image](https://github.com/isc30/UM773-Lite-Proxmox/assets/10807051/74c9423f-875c-4b73-b4d2-b4e742777812)
+
+
 # Known issues
 
 - ## When entering via Remote Desktop, the GPU is disabled
