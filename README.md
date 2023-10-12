@@ -1,6 +1,6 @@
-# Proxmox v7.4/v8 - Ryzen 7 7735hs - AMD Radeon 680M GPU passthrough
+# Proxmox v7.4/v8 - Ryzen 7 7735HS - AMD Radeon 680M GPU passthrough
 
-This is a guide to get the Ryzen 7 7735hs with integrated graphics running with proxmox inside a Windows 10 VM. The process for Windows 11 is similar but you need a patched ISO to remove the TMP, Secure boot and few other requirements.
+This is a guide to get the Ryzen 7 7735HS with AMD Radeon 680M integrated graphics running with proxmox inside a Windows 10 VM.
 
 # Installing Proxmox VE
 1. Download [Proxmox](https://www.proxmox.com/en/downloads/proxmox-virtual-environment/iso) and create a installation usb (with [rufus](https://rufus.ie/en/) for example)
