@@ -315,9 +315,9 @@ Now that we have all the drivers ready, we can enable the GPU as the Primary GPU
     - Make the GPU PCI device the `Primary GPU`
 9. Start the VM again and login in to it via Remote Desktop. Alternatively, you can also plug a monitor and you should see the VM there, passthrough the USB devices for keyboard and mouse and you have a fully working virtualized PC.
    
-# Getting OVMF (UEFI) BIOS working: Error 43
+# (optional) Getting OVMF (UEFI) BIOS working: Error 43
 
-In order to get a UEFI VM working (instead of SeaBios), there is 1 extra step that needs to be done: **configuring the UEFI ROM for the audio device**.
+If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you have probably encountered the famous "ERROR 43". Luckily the solution for this is quite simple: **configuring the UEFI ROM for the audio device**.
    
 1. Download `AMDGopDriver.rom` from this repository.
 2. Copy the file inside the proxmox machine, in `/usr/share/kvm/AMDGopDriver.rom`
