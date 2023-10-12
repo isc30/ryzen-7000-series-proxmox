@@ -84,6 +84,7 @@ The process of doing a GPU passthrough isn't complicated, it's about making sure
     lspci -nnk
     ```
 
+<!--
 ## Making the GPU available to the host again after stopping the VMs (solving the AMD Reset Bug)
 
 There is a known bug with AMD graphics cards where the host crashes after it tries to use a GPU after the passthrough. This is a mitigation effort but there isn't a real solution available for this.
@@ -120,6 +121,7 @@ There is a known bug with AMD graphics cards where the host crashes after it tri
     [    2.369873] vendor_reset: loading out-of-tree module taints kernel.
     [    2.426548] vendor_reset_hook: installed
     ```
+-->
 
 ## Creating the Windows VM
 
@@ -274,17 +276,14 @@ In order to pass the GPU device properly, we need to tell the VM which GPU BIOS 
 5. Do the same for the Audio device, in my case its `0000:34:00.1`
 6. Set the correct BIOS for the GPU:
     - Edit `/etc/pve/qemu-server/<VM_ID>.conf`
-    - Modify the `args` and `cpu` lines
     - Modify the `hostpci` line for the GPU
     ```diff
-    +args: -cpu 'host,-hypervisor,kvm=off'
     agent: 1
     balloon: 2048
     bios: seabios
     boot: order=ide0;ide2;net0
     cores: 8
-    -cpu: host
-    +cpu: host,hidden=1,flags=+pcid
+    cpu: host
     -hostpci0: 0000:34:00.0,pcie=1
     +hostpci0: 0000:34:00.0,pcie=1,romfile=vbios_1002_1681.bin
     hostpci1: 0000:34:00.1,pcie=1
@@ -325,13 +324,12 @@ If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you h
 3. Edit `/etc/pve/qemu-server/<VM_ID>.conf`
     - Modify the `hostpci` line for the Audio Device and append `,romfile=AMDGopDriver.rom`
     ```diff
-    args: -cpu 'host,-hypervisor,kvm=off'
     agent: 1
     balloon: 2048
     bios: ovmf
     boot: order=ide0;ide2;net0
     cores: 8
-    cpu: host,hidden=1,flags=+pcid
+    cpu: host
     hostpci0: 0000:34:00.0,pcie=1,romfile=vbios_1002_1681.bin
     -hostpci1: 0000:34:00.1,pcie=1
     +hostpci1: 0000:34:00.1,pcie=1,romfile=AMDGopDriver.rom
