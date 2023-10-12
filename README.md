@@ -301,7 +301,7 @@ In order to pass the GPU device properly, we need to tell the VM which GPU BIOS 
     sockets: 1
     ```
 7. Run the VM and install [the most recent VirtIO drivers](https://pve.proxmox.com/wiki/Windows_VirtIO_Drivers) (virtio-win-guest-tools.exe).
-7. Also install [the official AMD GPU drivers](https://www.amd.com/en/support/apu/amd-ryzen-processors/amd-ryzen-7-processors-radeon-graphics/amd-ryzen-7-7735hs). **Use the OFFLINE installer**, the online installer will complain that the computer is not an official AMD computer (its probably missing passthrough of some other devices in the IOMMU group, help appreciated).
+7. Also install [the official AMD GPU drivers](https://www.amd.com/en/support/apu/amd-ryzen-processors/amd-ryzen-7-processors-radeon-graphics/amd-ryzen-7-7735hs). **Use the OFFLINE installer**, the online installer will complain that the computer is not an official AMD computer.
 7. Install https://github.com/inga-lovinde/RadeonResetBugFix service to make sure the GPU can be transferred properly to the host
    
 # Using the GPU as the Primary GPU
