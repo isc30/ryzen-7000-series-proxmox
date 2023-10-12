@@ -352,8 +352,12 @@ If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you h
 # Results
 
 ![image](https://github.com/isc30/UM773-Lite-Proxmox/assets/10807051/69fea650-ab08-427a-98f3-caccc1bacd1b)
-![image](https://github.com/isc30/UM773-Lite-Proxmox/assets/10807051/74c9423f-875c-4b73-b4d2-b4e742777812)
-![image](https://github.com/isc30/UM773-Lite-Proxmox/assets/10807051/b06415f0-fd4b-488f-9ac7-88c3ad0af6e8)
+
+- Win 10:
+  ![image](https://github.com/isc30/UM773-Lite-Proxmox/assets/10807051/74c9423f-875c-4b73-b4d2-b4e742777812)
+
+- Win 11:
+  ![image](https://github.com/isc30/UM773-Lite-Proxmox/assets/10807051/b06415f0-fd4b-488f-9ac7-88c3ad0af6e8)
 
 # Known issues
 
