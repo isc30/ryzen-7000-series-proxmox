@@ -274,9 +274,9 @@ In order to pass the GPU device properly, we need to tell the VM which GPU BIOS 
     gcc vbios.c -o vbios
     ./vbios
     ```
-0. Move the `vbios_1002_1681.bin` vbios file to `/usr/share/kvm/`:
+0. Move the `vbios_*.bin` vbios file to `/usr/share/kvm/vbios_7xxx`:
     ```
-    mv vbios_1002_1681.bin /usr/share/kvm/
+    mv vbios_*.bin /usr/share/kvm/vbios_7xxx.bin
     ```
 4. In the proxmox web UI, click on the windows VM, Hardware, Add, PCI Device:
     - Raw device: pick the PCI ID that we identified on the first steps, in my case its `0000:34:00.0`
@@ -295,7 +295,7 @@ In order to pass the GPU device properly, we need to tell the VM which GPU BIOS 
     cores: 8
     cpu: host
     -hostpci0: 0000:34:00.0,pcie=1
-    +hostpci0: 0000:34:00.0,pcie=1,romfile=vbios_1002_1681.bin
+    +hostpci0: 0000:34:00.0,pcie=1,romfile=vbios_7xxx.bin
     hostpci1: 0000:34:00.1,pcie=1
     ide0: local-lvm:vm-100-disk-0,discard=on,size=64G,ssd=1
     ide2: local:iso/Windows10.iso,media=cdrom,size=4697792K
@@ -340,7 +340,7 @@ If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you h
     boot: order=ide0;ide2;net0
     cores: 8
     cpu: host
-    hostpci0: 0000:34:00.0,pcie=1,romfile=vbios_1002_1681.bin
+    hostpci0: 0000:34:00.0,pcie=1,romfile=vbios_7xxx.bin
     -hostpci1: 0000:34:00.1,pcie=1
     +hostpci1: 0000:34:00.1,pcie=1,romfile=AMDGopDriver.rom
     ide0: local-lvm:vm-100-disk-0,discard=on,size=64G,ssd=1
