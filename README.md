@@ -1,10 +1,18 @@
-# Proxmox v7.4/v8 - Ryzen 7 7735HS - AMD Radeon 680M GPU passthrough
+# Proxmox - Ryzen 7000 series - AMD Radeon 680M/780M GPU passthrough
 
-This is a guide to get the Ryzen 7 7735HS with AMD Radeon 680M integrated graphics running with proxmox inside a Windows 10 VM.
+This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780M integrated graphics running with Proxmox, GPU passthrough and UEFI included.
+
+## Confirmed lists of processors that work
+
+- [x] Ryzen 7 7735HS
+- [x] Ryzen 7 7840HS
+- [x] Ryzen 9 7940HS
+- [x] Ryzen 9 7950X3D (thanks @romner-set for confirming)
 
 # Installing Proxmox VE
+
 1. Download [Proxmox](https://www.proxmox.com/en/downloads/proxmox-virtual-environment/iso) and create a installation usb (with [rufus](https://rufus.ie/en/) for example)
-1. Boot your PC from the USB and run the proxmox installation (in my case it's a Minis Forum UM773)
+1. Boot your PC from the USB and run the proxmox installation (in my case it's a Minis Forum UM773 Lite)
 2. If installing Proxmox 7.4, you need to fix the graphical installer when it crashes (known issue in proxmox 7.4)
    - Wait until it says `Starting the installer GUI`, then press `CTRL + ALT + F3`
    - Run the following commands:
