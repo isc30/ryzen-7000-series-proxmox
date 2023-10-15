@@ -106,14 +106,19 @@ There is a known bug with AMD graphics cards where the host crashes after it tri
     dkms install .
     echo "vendor-reset" >> /etc/modules
     ```
-3. Create the vendor-reset GPU re-initialization service. **Remember to update the GPU PCI ID to your own one**:
+3. Create the GPU re-initialization service. **Remember to update the GPU PCI IDs to your own ones**:
     ```
     cat << EOF >>  /etc/systemd/system/vreset.service
     [Unit]
-    Description=AMD GPU reset method to 'device_specific'
+    Description=AMD GPU reset method
     After=multi-user.target
     [Service]
-    ExecStart=/usr/bin/bash -c 'echo device_specific > /sys/bus/pci/devices/0000:34:00.0/reset_method ; echo device_specific > /sys/bus/pci/devices/0000:34:00.1/reset_method ; echo 1 > /sys/bus/pci/devices/0000:34:00.0/remove && echo 1 > /sys/bus/pci/devices/0000:34:00.1/remove && echo 1 > /sys/bus/pci/rescan'
+    ExecStart=/usr/bin/bash -c '\
+      echo device_specific > /sys/bus/pci/devices/0000:34:00.0/reset_method ;\
+      echo device_specific > /sys/bus/pci/devices/0000:34:00.1/reset_method ;\
+      echo 1 > /sys/bus/pci/devices/0000:34:00.0/remove &&\
+      echo 1 > /sys/bus/pci/devices/0000:34:00.1/remove &&\
+      echo 1 > /sys/bus/pci/rescan'
     [Install]
     WantedBy=multi-user.target
     EOF
