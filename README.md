@@ -2,7 +2,12 @@
 
 This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780M integrated graphics running with Proxmox, GPU passthrough and UEFI included.
 
-## Confirmed lists of processors that work
+## Confirmed list of Proxmox versions that work:
+
+- [x] Proxmox 7.4
+- [x] Proxmox 8.0 (recommended, has a newer kernel)
+
+## Confirmed list of processors that work:
 
 - [x] Ryzen 7 7735HS
 - [x] Ryzen 7 7840HS
