@@ -375,7 +375,7 @@ If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you h
 # Known issues
 
 - ## When entering via Remote Desktop, the GPU is disabled
-  I'm unsure why this happens, but it seems like right-click + Enable Device makes it work again
+  I'm unsure why this happens, but it seems like `Device Manager -> right-click -> Enable Device` makes it work again
 
 - ## In random situations, I still get "error 43" when trying to initialize the GPU in the VM
-  Probably related to the "amd reset issue", that prevents the GPU from binding to a VM after it was used once. The only "real" solution for this is to restart the proxmox host after stopping a VM that used the GPU. :sad:
+  Probably related to the "amd reset issue", that prevents the GPU from binding to a VM after it was used once. The only **"real"** solution for this is to restart the proxmox host after stopping a VM that used the GPU. :sad:
