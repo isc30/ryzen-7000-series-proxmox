@@ -9,11 +9,11 @@ This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780
 
 ## Confirmed list of hardware that works:
 
-- [x] Ryzen 7 7735HS
-- [x] Ryzen 7 7840HS
-- [x] Ryzen 9 7940HS
-- [x] Ryzen 9 7950X3D (thanks @romner-set for confirming)
-- [x] 6900XT (thanks @mpaulo for confirming)
+- [x] Ryzen 7 7735HS (RDNA2 680M Rembrandt iGPU) 
+- [x] Ryzen 7 7840HS (RDNA3 780M Phoenix iGPU) 
+- [x] Ryzen 9 7940HS (RDNA3 780M Phoenix iGPU) 
+- [x] Ryzen 9 7950X3D (RDNA2 Raphael iGPU) - thanks @romner-set for confirming
+- [x] 6900XT (RDNA2 Navi 21 dGPU) - thanks @mpaulo for confirming
 
 # Installing Proxmox VE
 
