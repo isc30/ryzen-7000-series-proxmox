@@ -157,7 +157,7 @@ There is a known bug with AMD graphics cards where the host crashes after it tri
     - Qemu Agent: ON
     - Disk: at least 64gb, Discard ON, SSD emulation ON
     - CPU Type: host
-    - RAM: at least 4gb
+    - RAM: at least 12gb
 1. Run the machine and install Windows (type of installation: custom)
 2. After finishing the Windows installation, stop the VM
 
