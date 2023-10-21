@@ -2,6 +2,8 @@
 
 This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780M integrated graphics or RDNA2/RDNA3 GPU running with Proxmox, GPU passthrough and UEFI included.
 
+[![project chat](https://img.shields.io/badge/zulip-join_chat-brightgreen.svg)]([https://chat.zulip.org](https://isc30.zulipchat.com/join/36je7erap524zo5hh2gjohyx/))
+
 ## Confirmed list of Proxmox versions that work:
 
 - [x] Proxmox 7.4
