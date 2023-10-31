@@ -299,8 +299,10 @@ In order to pass the GPU device properly, we need to tell the VM which GPU BIOS 
 5. Do the same for the Audio device, in my case its `0000:34:00.1`
 6. Set the correct BIOS for the GPU:
     - Edit `/etc/pve/qemu-server/<VM_ID>.conf`
+    - Modify `args` to hide virtualization from the guest
     - Modify the `hostpci` line for the GPU
     ```diff
+    +args: -cpu 'host,-hypervisor,kvm=off'
     agent: 1
     balloon: 2048
     bios: seabios
@@ -347,6 +349,7 @@ If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you h
 3. Edit `/etc/pve/qemu-server/<VM_ID>.conf`
     - Modify the `hostpci` line for the Audio Device and append `,romfile=AMDGopDriver.rom`
     ```diff
+    args: -cpu 'host,-hypervisor,kvm=off'
     agent: 1
     balloon: 2048
     bios: ovmf
