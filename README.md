@@ -38,11 +38,13 @@ This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780
     ```
     ssh root@<THE_IP_YOU_CONFIGURED>
     ```
-3. Proxmox VE comes with Enterprise repositories configured by default, [we need to switch to the non-subscription ones to get proxmox updates](https://pve.proxmox.com/wiki/Package_Repositories):
+3. Proxmox VE comes with Enterprise repositories configured by default, we need to switch to the non-subscription ones to get proxmox updates:
     ```
-    echo "deb http://download.proxmox.com/debian/pve bullseye pve-no-subscription" >> /etc/apt/sources.list.d/pve.list
-    mv /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.orig
-    apt update
+    bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/post-pve-install.sh)"
+    ```
+4. Install the CPU Microcode packages:
+    ```
+    bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/misc/microcode.sh)"
     ```
     
 # Configuring the GPU for passthrough
