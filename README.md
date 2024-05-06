@@ -14,6 +14,7 @@ This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780
 - [x] Ryzen 7 7735HS (RDNA2 680M Rembrandt iGPU) 
 - [x] Ryzen 7 7840HS (RDNA3 780M Phoenix iGPU) 
 - [x] Ryzen 9 7940HS (RDNA3 780M Phoenix iGPU) - thanks @mmaiero for confirming
+- [x] Ryzen 9 7900X (RDNA2 Raphael iGPU) - thanks to @engels74 for confirming
 - [x] Ryzen 9 7950X3D (RDNA2 Raphael iGPU) - thanks @romner-set for confirming
 - [x] 6900XT (RDNA2 Navi 21 dGPU) - thanks @mpaulo for confirming
 
