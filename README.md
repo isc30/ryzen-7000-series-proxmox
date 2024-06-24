@@ -347,7 +347,7 @@ Now that we have all the drivers ready, we can enable the GPU as the Primary GPU
 
 If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you have probably encountered the famous "ERROR 43". Luckily the solution for this is quite simple: **configuring the UEFI ROM for the audio device**.
    
-1. Download `AMDGopDriver.rom` from this repository.
+1. Download `AMDGopDriver.rom` from this repository. Note that this AMDGopDriver.rom might not be compatible with certain hardware. If it fails to work, consider extracting it yourself. A brief guide is available [here](https://gist.github.com/matt22207/bb1ba1811a08a715e32f106450b0418a?permalink_comment_id=4955044#gistcomment-4955044).
 2. Copy the file inside the proxmox machine, in `/usr/share/kvm/AMDGopDriver.rom`
 3. Edit `/etc/pve/qemu-server/<VM_ID>.conf`
     - Modify the `hostpci` line for the Audio Device and append `,romfile=AMDGopDriver.rom`
