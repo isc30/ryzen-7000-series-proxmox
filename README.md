@@ -17,6 +17,7 @@ This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780
 - [x] Ryzen 9 7900X (RDNA2 Raphael iGPU) - thanks to @engels74 for confirming
 - [x] Ryzen 9 7950X3D (RDNA2 Raphael iGPU) - thanks @romner-set for confirming
 - [x] 6900XT (RDNA2 Navi 21 dGPU) - thanks @mpaulo for confirming
+- [x] Ryzen 9 6900HX (RDNA2 680M Rembrandt iGPU) - thats @Nucs for confirming
 
 # Installing Proxmox VE
 
