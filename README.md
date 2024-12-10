@@ -394,3 +394,139 @@ If you tried to follow the guide but instead of SeaBIOS you selected UEFI, you h
 
 - ## In random situations, I still get "error 43" when trying to initialize the GPU in the VM
   Probably related to the "amd reset issue", that prevents the GPU from binding to a VM after it was used once. The only **"real"** solution for this is to restart the proxmox host after stopping a VM that used the GPU. :sad:
+
+* * * 
+
+# To Set Up GPU/iGPU Passthrough for an Ubuntu/Debian Virtual Machine:
+
+## Initial Configuration in Proxmox
+
+1. **Add PCI Devices**:
+    - In the Proxmox web interface, navigate to your VM's **Hardware** tab.
+    - Click on **Add** > **PCI Device** and select both the integrated GPU and its audio device.
+
+2. **Edit VM Configuration**:
+    - Open the VM configuration file (for example, VM ID 107):
+      ```bash 
+      nano /etc/pve/qemu-server/107.conf 
+      ```
+      
+    - Ensure the configuration includes the following settings:
+      ```plaintext 
+      agent: 1 
+      balloon: 2048 
+      bios: ovmf 
+      boot: order=scsi0;ide2;net0 
+      cores: 4 
+      cpu: host 
+      efidisk0: local-zfs:vm-107-disk-0,efitype=4m,pre-enrolled-keys=1,size=1M 
+      hostpci0: 0000:c5:00.0,pcie=1 # GPU 
+      hostpci1: 0000:c5:00.1,pcie=1 # Audio Device 
+      ide2: local:iso/debian-12.8.0-amd64-netinst.iso,media=cdrom,size=631M 
+      machine: q35 
+      memory: 16384 
+      meta: creation-qemu=9.0.2,ctime=1733855400 
+      name: deb-igpu 
+      net0:e1000=BC24:E11:E021AA,bridge=vmbr0,firewall=1 
+      numa : 0 
+      ostype : l26 
+      scsi0 : local-zfs : vm-107-disk-1 , discard = on , iothread = 1 , size =500G , ssd = 1  
+      scsihw : virtio-scsi-single  
+      smbios1 : uuid = b4c2abe7-5868-43c5-9940-a5425b33cf6e  
+      sockets : 1  
+      vga : std  
+      vmgenid : c16dc6ea-8790-4d99-b825-5c617f18e3b8  
+      ```
+
+* * * 
+### Installation Steps for AMD Drivers
+
+1. **[Download the Driver](https://www.amd.com/en/support/download/linux-drivers.html)**:
+   
+**_Keep in mind, if you have an integrated GPU, you want to install the CPU driver for it instead_**
+
+
+If you have access to a terminal in Ubuntu, use this command to download AMD GPU driver package:
+
+```bash 
+wget https://repo.radeon.com/amdgpu-install/6.2.3/ubuntu/jammy/amdgpu-install_6.2.60203-1_all.deb 
+```
+
+2. **Install the Driver**:
+
+After downloading, install it using:
+
+```bash 
+sudo apt install ./amdgpu-install_6.2.60203-1_all.deb 
+```
+
+3. **Run Installation Command**:
+
+Execute this command to set up the driver:
+
+```bash 
+sudo amdgpu-install -y --usecase=graphics,rocm 
+```
+
+4. **Add User to Groups**:
+
+Ensure your user has access to render and video devices:
+
+```bash 
+sudo usermod -a -G render,video $LOGNAME 
+```
+
+5. **Reboot Your System**:
+
+Finally, reboot your system to apply changes:
+
+```bash 
+sudo reboot 
+```
+
+### Post-Installation Configuration
+
+After rebooting:
+
+1. **Verify Driver Installation**:
+
+Check if integrated GPU is recognized by running:
+
+```bash 
+lspci -k | grep -EA3 'VGA|3D|Display'  
+```
+
+2. **Configure Remote Desktop (Optional)**:
+
+If you plan to use remote desktop features in your Ubuntu VM, ensure that remote desktop services are enabled.
+
+3. **Start the VM**:
+
+Boot up your VM from Proxmox interface and verify that it can access GPU.
+
+### **Testing GPU/iGPU**
+
+To properly test if your GPU/iGPU is working, you should:
+
+1. Run these commands instead:
+```bash
+glxinfo | grep "OpenGL renderer"
+DRI_PRIME=1 glxgears
+```
+
+2. Check the GPU driver status:
+```bash
+lspci -nnk | grep -A3 VGA
+```
+
+![image](https://github.com/user-attachments/assets/cba0ca74-dbb2-48ab-b078-0ff67e2335ef)
+
+These commands will give you a better indication of whether your iGPU is properly functioning within your virtual environment.
+
+### Troubleshooting Tips
+
+- If you encounter issues with starting VM or see errors related to PCI devices not being found, ensure that IOMMU is enabled in your BIOS settings.
+  
+- Check that you have blacklisted any conflicting drivers (like `radeon` or `nouveau`) in `/etc/modprobe.d/blacklist.conf` as necessary.
+
+By following these steps carefully, you should be able to successfully configure GPU passthrough for an Ubuntu/Debian virtual machine on Proxmox using an AMD GPU/iGPU.
