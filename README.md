@@ -11,6 +11,7 @@ This is a guide to get the Ryzen 7000 series processors with AMD Radeon 680M/780
 
 ## Confirmed list of hardware that works:
 
+- [x] Ryzen 5 7640HS (RDNA3 760M Phoenix1 iGPU) - added by @vitaleg (Important: use modprobe.d/7640hs_blacklist.conf)
 - [x] Ryzen 7 7735HS (RDNA2 680M Rembrandt iGPU) 
 - [x] Ryzen 7 7840HS (RDNA3 780M Phoenix iGPU)
 - [x] Ryzen 7 8845HS (RDNA3 780M Phoenix iGPU) - thanks @serega404 for confirming
